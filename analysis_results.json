@@ -1,0 +1,157 @@
+{
+  "ticket_count": 1920,
+  "message_count": 0,
+  "response_template_count": 19,
+  "templates_by_category": {
+    "hesap_kapandı": 1,
+    "bakiye": 5,
+    "hata": 3,
+    "stok": 1,
+    "diğer": 8,
+    "numara_kalıcılık": 1
+  },
+  "top_problems": [
+    {
+      "problem": "bakiye",
+      "count": 60
+    },
+    {
+      "problem": "bakiye yükleme",
+      "count": 31
+    },
+    {
+      "problem": "sms gelmiyor",
+      "count": 27
+    },
+    {
+      "problem": "ödeme",
+      "count": 27
+    },
+    {
+      "problem": "numara",
+      "count": 27
+    },
+    {
+      "problem": "bakiye ",
+      "count": 24
+    },
+    {
+      "problem": "kod gelmiyor ",
+      "count": 23
+    },
+    {
+      "problem": "para",
+      "count": 22
+    },
+    {
+      "problem": "sms",
+      "count": 21
+    },
+    {
+      "problem": "kod gelmiyor",
+      "count": 21
+    },
+    {
+      "problem": "kod",
+      "count": 20
+    },
+    {
+      "problem": "onay kodu",
+      "count": 15
+    },
+    {
+      "problem": "para yatırma",
+      "count": 15
+    },
+    {
+      "problem": "yatırım",
+      "count": 14
+    },
+    {
+      "problem": "telegram",
+      "count": 13
+    }
+  ],
+  "common_keywords": [
+    {
+      "word": "numara",
+      "count": 321
+    },
+    {
+      "word": "bakiye",
+      "count": 220
+    },
+    {
+      "word": "para",
+      "count": 215
+    },
+    {
+      "word": "gelmiyor",
+      "count": 155
+    },
+    {
+      "word": "gelmedi",
+      "count": 90
+    },
+    {
+      "word": "kodu",
+      "count": 76
+    },
+    {
+      "word": "whatsapp",
+      "count": 73
+    },
+    {
+      "word": "yükleme",
+      "count": 72
+    },
+    {
+      "word": "ödeme",
+      "count": 70
+    },
+    {
+      "word": "onay",
+      "count": 60
+    },
+    {
+      "word": "telegram",
+      "count": 55
+    },
+    {
+      "word": "yatırım",
+      "count": 47
+    },
+    {
+      "word": "hesaba",
+      "count": 47
+    },
+    {
+      "word": "hesap",
+      "count": 46
+    },
+    {
+      "word": "aldığım",
+      "count": 44
+    },
+    {
+      "word": "aldım",
+      "count": 41
+    },
+    {
+      "word": "havale",
+      "count": 40
+    },
+    {
+      "word": "düşmedi",
+      "count": 39
+    },
+    {
+      "word": "alamıyorum",
+      "count": 36
+    },
+    {
+      "word": "kapandı",
+      "count": 33
+    }
+  ]
+}
