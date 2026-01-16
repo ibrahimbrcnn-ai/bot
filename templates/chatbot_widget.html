@@ -1,0 +1,426 @@
+<!-- SMSPark Chatbot Widget - Tüm sayfalara eklenebilir -->
+<!-- Bu dosyayı sitenizin tüm sayfalarına include edin veya header/footer'a ekleyin -->
+
+<!-- Chatbot Widget Container -->
+<div id="chatbot-widget-container" style="display: none;">
+    <div id="chatbot-widget">
+        <!-- Chatbot Header -->
+        <div id="chatbot-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 20px;">🤖</span>
+                <span style="font-weight: bold; font-size: 16px;">SMSPark Destek Chatbotu</span>
+            </div>
+            <button id="chatbot-close-btn" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">✕</button>
+        </div>
+        
+        <!-- Chat Messages Area -->
+        <div id="chatbot-messages">
+            <div class="chatbot-message bot-message">
+                <div class="message-content">
+                    Merhaba! SMSPark destek ekibine hoş geldiniz. Size nasıl yardımcı olabilirim? Sorununuzu açıklayabilirsiniz.
+                </div>
+                <div class="message-time">Şimdi</div>
+            </div>
+        </div>
+        
+        <!-- Chat Input Area -->
+        <div id="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Mesajınızı yazın..." />
+            <button id="chatbot-send-btn">Gönder</button>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Chatbot Button (Sağ altta baloncuk) -->
+<div id="chatbot-toggle-btn">
+    <span style="font-size: 24px;">💬</span>
+    <span id="chatbot-badge" style="display: none;">1</span>
+</div>
+
+<!-- WhatsApp Support Button (Sağ altta, chatbot'un üstünde) -->
+<a href="https://wa.me/905437265986" target="_blank" id="whatsapp-support-btn" title="WhatsApp Destek">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:30px;height:30px;">
+    <span>WhatsApp Destek</span>
+</a>
+
+<style>
+/* Chatbot Widget Styles */
+#chatbot-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9998;
+    transition: transform 0.3s ease;
+}
+
+#chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+#chatbot-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+#whatsapp-support-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9997;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+#whatsapp-support-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+#chatbot-widget-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 380px;
+    height: 600px;
+    z-index: 9999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+#chatbot-widget {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#chatbot-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+#chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chatbot-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message {
+    align-self: flex-start;
+}
+
+.user-message {
+    align-self: flex-end;
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 12px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.bot-message .message-content {
+    background: white;
+    color: #333;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message .message-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+    padding: 0 4px;
+}
+
+#chatbot-input-area {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    gap: 10px;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 24px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#chatbot-input:focus {
+    border-color: #667eea;
+}
+
+#chatbot-send-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+#chatbot-send-btn:hover {
+    transform: scale(1.05);
+}
+
+#chatbot-send-btn:active {
+    transform: scale(0.95);
+}
+
+/* Scrollbar Styling */
+#chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chatbot-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    #chatbot-widget-container {
+        width: calc(100% - 40px);
+        height: calc(100vh - 40px);
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+    }
+    
+    #chatbot-toggle-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 56px;
+        height: 56px;
+    }
+    
+    #whatsapp-support-btn {
+        bottom: 80px;
+        right: 15px;
+        font-size: 12px;
+        padding: 10px 14px;
+    }
+}
+</style>
+
+<script>
+// Chatbot Widget JavaScript
+(function() {
+    const API_URL = '/api/chat'; // Flask API endpoint
+    
+    // DOM Elements
+    const toggleBtn = document.getElementById('chatbot-toggle-btn');
+    const widgetContainer = document.getElementById('chatbot-widget-container');
+    const closeBtn = document.getElementById('chatbot-close-btn');
+    const messagesContainer = document.getElementById('chatbot-messages');
+    const inputField = document.getElementById('chatbot-input');
+    const sendBtn = document.getElementById('chatbot-send-btn');
+    const badge = document.getElementById('chatbot-badge');
+    
+    // State
+    let isOpen = false;
+    let unreadCount = 0;
+    
+    // Toggle Widget
+    function toggleWidget() {
+        isOpen = !isOpen;
+        if (isOpen) {
+            widgetContainer.style.display = 'block';
+            toggleBtn.style.display = 'none';
+            unreadCount = 0;
+            updateBadge();
+            inputField.focus();
+        } else {
+            widgetContainer.style.display = 'none';
+            toggleBtn.style.display = 'flex';
+        }
+    }
+    
+    // Close Widget
+    function closeWidget() {
+        isOpen = false;
+        widgetContainer.style.display = 'none';
+        toggleBtn.style.display = 'flex';
+    }
+    
+    // Update Badge
+    function updateBadge() {
+        if (unreadCount > 0 && !isOpen) {
+            badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+    
+    // Add Message to Chat
+    function addMessage(content, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chatbot-message ${isUser ? 'user-message' : 'bot-message'}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = content;
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        const now = new Date();
+        timeDiv.textContent = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+        
+        messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(timeDiv);
+        messagesContainer.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        
+        // Increment unread count if widget is closed
+        if (!isOpen && !isUser) {
+            unreadCount++;
+            updateBadge();
+        }
+    }
+    
+    // Send Message
+    async function sendMessage() {
+        const message = inputField.value.trim();
+        if (!message) return;
+        
+        // Add user message
+        addMessage(message, true);
+        inputField.value = '';
+        
+        // Disable input while waiting
+        inputField.disabled = true;
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Gönderiliyor...';
+        
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            });
+            
+            const data = await response.json();
+            
+            if (data.status === 'success') {
+                addMessage(data.response, false);
+            } else {
+                addMessage('Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.', false);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            addMessage('Bağlantı hatası. Lütfen sayfayı yenileyip tekrar deneyin.', false);
+        } finally {
+            inputField.disabled = false;
+            sendBtn.disabled = false;
+            sendBtn.textContent = 'Gönder';
+            inputField.focus();
+        }
+    }
+    
+    // Event Listeners
+    toggleBtn.addEventListener('click', toggleWidget);
+    closeBtn.addEventListener('click', closeWidget);
+    sendBtn.addEventListener('click', sendMessage);
+    
+    inputField.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Initialize: Widget closed by default
+    widgetContainer.style.display = 'none';
+    toggleBtn.style.display = 'flex';
+})();
+</script>
+
