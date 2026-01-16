@@ -35,6 +35,7 @@
 <div id="chatbot-toggle-btn">
     <span style="font-size: 24px;">💬</span>
     <span id="chatbot-badge" style="display: none;">1</span>
+    <span class="chatbot-label">AI Destek</span>
 </div>
 
 <!-- WhatsApp Support Button (Sağ altta, chatbot'un üstünde) -->
@@ -50,16 +51,20 @@
     bottom: 20px;
     right: 20px;
     width: 60px;
-    height: 60px;
+    height: auto;
+    min-height: 60px;
+    padding-bottom: 8px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 50%;
+    border-radius: 50px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 9998;
     transition: transform 0.3s ease;
+    gap: 5px;
 }
 
 #chatbot-toggle-btn:hover {
@@ -80,6 +85,16 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+}
+
+.chatbot-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin-top: -5px;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 #whatsapp-support-btn {
