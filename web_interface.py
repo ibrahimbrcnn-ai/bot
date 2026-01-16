@@ -6,10 +6,19 @@ Flask kullanarak basit web arayüzü
 """
 
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from chatbot_advanced import AdvancedSupportChatbot
 import json
 
 app = Flask(__name__)
+# CORS ayarları - smspark.net için izin ver
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["https://smspark.net", "http://smspark.net", "https://www.smspark.net", "http://www.smspark.net"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 chatbot = AdvancedSupportChatbot()
 
 @app.route('/')
@@ -48,7 +57,4 @@ if __name__ == '__main__':
     print("Chatbot web arayüzü başlatılıyor...")
     print("Tarayıcınızda http://localhost:5000 adresini açın")
     app.run(debug=True, host='0.0.0.0', port=5000)
-    
-
-
 
