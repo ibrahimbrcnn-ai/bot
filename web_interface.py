@@ -48,6 +48,7 @@ if __name__ == '__main__':
     print("Chatbot web arayüzü başlatılıyor...")
     print("Tarayıcınızda http://localhost:5000 adresini açın")
     app.run(debug=True, host='0.0.0.0', port=5000)
-    gunicorn==21.2.0
+    
+
 
 
